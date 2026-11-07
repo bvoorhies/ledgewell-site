@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgewell Automation | Automation your team will actually use</title>
+<meta name="description" content="Ledgewell Automation helps local service businesses like roofers, HVAC and plumbers reply to every lead in seconds and book more appointments.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#fff;
+  --soft:#f2f2f0;
+  --line:#e6e6e3;
+  --ink:#0d0d0d;
+  --muted:#6a6a67;
+  --grey-top:#848484;
+  --grey-mid:#a0a0a0;
+  --holo:linear-gradient(100deg,#ffd3ef 0%,#e9f0ff 22%,#fff6c9 48%,#d6f7ff 70%,#cdb9ff 100%);
+  --font:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--ink);font:400 16px/1.5 var(--font);-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3,p,ul,figure,blockquote{margin:0;padding:0}
+ul{list-style:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid #5b6cff;outline-offset:3px;border-radius:8px}
+.wrap{width:min(1080px,100% - 40px);margin-inline:auto}
+.skip{position:fixed;left:16px;top:-60px;z-index:40;background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px}
+.skip:focus{top:16px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Navigation */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:30;display:grid;justify-items:center}
+.nav-row{display:flex;align-items:center;gap:8px}
+.nav-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:rgba(60,60,60,.72);color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav-pill{display:flex;align-items:center;padding:3px;background:rgba(60,60,60,.72);border-radius:999px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav-btn{height:32px;padding:0 13px;border-radius:999px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:7px;color:#fff}
+.nav-cta{background:#fff;color:var(--ink);white-space:nowrap}
+.bars{width:13px;height:7px;position:relative}
+.bars::before,.bars::after{content:"";position:absolute;left:0;right:0;height:1.5px;background:currentColor;transition:transform .2s}
+.bars::before{top:0}.bars::after{bottom:0}
+[aria-expanded=true] .bars::before{transform:translateY(2.75px) rotate(45deg)}
+[aria-expanded=true] .bars::after{transform:translateY(-2.75px) rotate(-45deg)}
+.nav-menu{margin-top:8px;min-width:210px;padding:8px;background:rgba(40,40,40,.9);color:#fff;border-radius:18px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav-menu[hidden]{display:none}
+.nav-menu a{display:block;padding:8px 12px;border-radius:10px;font-size:14px}
+.nav-menu a:hover{background:rgba(255,255,255,.12)}
+
+/* Hero */
+.top{background:linear-gradient(#7e7e7e 0,#949494 52%,#b4b4b3 74%,#fff 100%)}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;align-content:center;justify-items:center;text-align:center;padding:96px 20px 120px;overflow:hidden}
+#ball{position:absolute;inset:0;width:100%;height:100%}
+.hero-copy{position:relative;display:grid;justify-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.hero .eyebrow{color:#fff;margin-bottom:16px}
+h1{font-weight:500;font-size:clamp(38px,5.2vw,64px);line-height:1.08;letter-spacing:-.03em;max-width:15em;color:#fff;background:linear-gradient(97deg,#ffd6ee 0%,#fff8cf 16%,#ffdcef 34%,#e6d8ff 48%,#fff 58%,#fff6be 72%,#c9d4ff 88%,#a9c8ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 1px 8px rgba(0,0,0,.28))}
+.hero p{max-width:46ch;margin-top:16px;color:#fff;font-size:15px;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;height:44px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-holo{background:linear-gradient(#0d0d0d,#0d0d0d) padding-box,linear-gradient(100deg,#ffbdf0,#fff,#9fc1ff) border-box;border:1.5px solid transparent;color:#fff}
+.btn-glass{background:rgba(235,235,235,.8);color:var(--ink);padding-left:8px}
+.dots{display:flex}
+.dots i{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#8a8a8a,#3a3a3a);border:2px solid #e8e8e8}
+.dots i+i{margin-left:-8px;background:linear-gradient(135deg,#bdbdbd,#5e5e5e)}
+.arrow{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:11px;line-height:1}
+
+/* Statement */
+.statement{padding:clamp(70px,13vh,130px) 0 clamp(60px,10vh,110px)}
+.statement p{max-width:620px;margin-inline:auto;text-align:center;font-size:clamp(24px,2.9vw,33px);line-height:1.2;letter-spacing:-.02em;font-weight:500}
+.word{opacity:.16;transition:opacity .25s}
+.word.on{opacity:1}
+
+
+/* Section headings */
+section{scroll-margin-top:70px}
+.head{text-align:center;display:grid;justify-items:center}
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 9px;margin-bottom:12px;border-radius:999px;background:var(--soft);font-size:11px;color:var(--muted)}
+.tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink)}
+h2{font-weight:500;font-size:clamp(32px,3.9vw,46px);line-height:1.08;letter-spacing:-.03em}
+.lede{max-width:52ch;margin-top:12px;color:var(--muted);font-size:15px}
+.pad{padding:clamp(70px,12vh,120px) 0}
+
+/* Why */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:46px}
+.why-card{padding:12px 12px 24px;background:var(--soft);border-radius:30px;text-align:center}
+.tile{aspect-ratio:1.18;display:grid;place-items:center;border-radius:24px;color:#fff;background:radial-gradient(circle at 50% 54%,#bcbcba 0,#6d6d6c 26%,#2a2a2a 62%,#0f0f0f 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.tile span{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.2);backdrop-filter:blur(4px)}
+.why-card h3,.svc h3,.step h3{font-weight:500;font-size:16px;letter-spacing:-.01em}
+.why-card h3{margin-top:18px}
+.why-card p{max-width:30ch;margin:6px auto 0;color:var(--muted);font-size:14px}
+
+/* Services */
+.bento{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin-top:44px}
+.svc{display:flex;flex-direction:column;gap:14px;padding:18px;background:var(--soft);border-radius:26px}
+.svc p{margin-top:4px;color:var(--muted);font-size:13.500px;line-height:1.42}
+.svc-tall{grid-row:span 2}
+.chat .chip{justify-self:end}
+.svc-tall .chat{max-width:360px;font-size:15px;gap:10px}
+.talk>*{animation:talk1 10s ease infinite}
+.talk>:nth-child(2){animation-name:talk2}
+.talk>:nth-child(3){animation-name:talk3}
+@keyframes talk1{0%{opacity:0;transform:translateY(6px)}6%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes talk2{0%,16%{opacity:0;transform:translateY(6px)}24%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes talk3{0%,36%{opacity:0;transform:translateY(6px)}44%,92%{opacity:1;transform:none}100%{opacity:0}}
+.demo{flex:1;min-height:118px;display:grid;place-items:center}
+.flow{width:100%;max-width:330px;height:auto}
+.flow path{fill:none;stroke:#b9b9b5;stroke-width:1.4}
+.flow path.run{stroke:#333;stroke-dasharray:5 7;animation:flow 1.8s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-24}}
+.flow rect{fill:#2a2a2a}
+.flow rect.off{fill:#dadad7}
+.flow text{fill:#fff;font:500 10.500px var(--font);text-anchor:middle}
+.flow .core{fill:#fff;stroke:#d9d4ff;stroke-width:4}
+.chat{width:100%;display:grid;gap:7px;font-size:12.500px;line-height:1.3}
+.bubble{max-width:90%;padding:7px 11px;border-radius:13px;background:#fff}
+.bubble.me{justify-self:end;background:var(--ink);color:#fff}
+.lead{width:100%;display:grid;justify-items:center;gap:7px;padding:12px;background:#fff;border-radius:16px;font-size:12.500px;box-shadow:0 8px 20px rgba(0,0,0,.05)}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#9a9a97,#3c3c3b)}
+.chip{padding:2px 10px;border-radius:999px;background:#e8f6ec;color:#256b3c;font-size:11px}
+.spark{width:100%;height:auto}
+.spark path{fill:none;stroke:#333;stroke-width:1.4}
+.spark path.area{fill:url(#fade);stroke:none}
+.arcs{width:100%;height:auto}
+.arcs circle{fill:none;stroke:#d5d5d2}
+.promo{grid-column:span 3;display:grid;grid-template-columns:1fr;gap:14px;padding:12px;background:var(--soft);border-radius:26px}
+.holo{background:linear-gradient(100deg,#ffd1ef 0,#d8c8ff 28%,#b9dcff 52%,#d4f6e2 74%,#fff4bd 100%)}
+.promo-card{padding:24px;border-radius:20px;color:var(--ink)}
+.promo-card h3{font-weight:500;font-size:20px;letter-spacing:-.02em}
+.promo-card p{margin:6px 0 16px;font-size:14px;color:#3b3b39}
+
+/* How we work */
+.steps{position:relative;margin-top:44px;display:grid;gap:6px}
+.steps::before,.fill{content:"";position:absolute;left:50%;top:0;width:1.5px;margin-left:-.75px;background:var(--line);bottom:0}
+.fill{background:var(--ink);bottom:auto;height:0}
+.step{position:relative;display:grid;grid-template-columns:1fr 44px 1fr;align-items:center;gap:0;padding:12px 18px;border-radius:22px;transition:background .3s}
+.step.on{background:var(--soft)}
+.dot{position:relative;z-index:1;justify-self:center;width:13px;height:13px;border-radius:50%;background:#fff;border:1.5px solid #cfcfcc;transition:.3s}
+.step.on .dot{background:#6a5cff;border-color:#d4cfff;box-shadow:0 0 0 4px #e8e5ff}
+.step-ico{justify-self:end;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px}
+.step-ico i{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-style:normal;color:#fff;background:radial-gradient(circle,#777 0,#191919 80%)}
+.step-text p{margin-top:3px;color:var(--muted);font-size:14px;max-width:36ch}
+.step:nth-child(odd of .step) .step-text{order:-1;text-align:right;justify-items:end}
+.step:nth-child(odd of .step) .step-text p{margin-left:auto}
+.step:nth-child(odd of .step) .step-ico{order:1;justify-self:start;flex-direction:row-reverse}
+
+
+/* Technology */
+.tech{position:relative;margin-top:40px;display:grid;gap:10px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.belt{display:flex;gap:10px;width:max-content;animation:belt 44s linear infinite}
+.belt.rev{animation-direction:reverse}
+.belt span{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 8px 0 16px;border-radius:14px;background:var(--soft);font-size:13px;white-space:nowrap}
+.belt span::after{content:"";width:26px;height:26px;border-radius:9px;background:#fff}
+@keyframes belt{to{transform:translateX(-50%)}}
+.tech-wrap{position:relative}
+.orb{position:absolute;z-index:2;left:50%;top:50%;width:112px;height:112px;margin:-56px 0 0 -56px;margin-top:-36px;border-radius:50%;display:grid;place-items:center;align-content:center;gap:4px;text-align:center;font-size:12px;color:#fff;background:radial-gradient(circle at 50% 38%,#484848,#0e0e0e 72%);box-shadow:0 0 44px 14px rgba(255,200,180,.34)}
+
+
+
+/* Pricing */
+.plans{display:grid;grid-template-columns:1fr;gap:8px;max-width:560px;margin:30px auto 0;padding:10px;background:var(--soft);border-radius:32px}
+.plan{display:flex;flex-direction:column;padding:24px;border-radius:24px}
+.plan.best{position:relative;background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.06)}
+.plan-ico{width:30px;height:30px;border-radius:9px;background:var(--ink);margin-bottom:12px}
+.best .plan-ico{background:linear-gradient(135deg,#ffc9ee,#b6ccff)}
+.plan h3{font-weight:500;font-size:17px}
+.plan>p{margin-top:4px;margin-bottom:18px;color:var(--muted);font-size:14px}
+.plan ul{display:grid;gap:7px;padding-top:16px;border-top:1px solid #dfdfdc;font-size:13.500px;margin-bottom:22px}
+.plan li::before{content:"✓";margin-right:8px}
+.plan .btn{justify-content:center;margin-top:auto}
+.banner{max-width:560px;margin:14px auto 0;padding:30px 24px;border-radius:32px;text-align:center}
+.banner .avatar{margin:0 auto 10px}
+.banner h3{font-weight:500;font-size:19px;letter-spacing:-.02em}
+.banner p{margin:4px 0 14px;font-size:14px;color:#3b3b39}
+
+
+/* FAQ */
+.faq-zone{background:linear-gradient(#fff 0,#e9e9e7 26%,#a9a9a9 100%)}
+.faq{display:grid;gap:9px;max-width:680px;margin:40px auto 0}
+.faq details{background:rgba(255,255,255,.42);border-radius:18px;transition:background .25s}
+.faq details[open]{background:#fff}
+.faq summary{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 18px;font-size:14.500px;font-weight:500;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";margin-left:auto;flex:none;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:400;line-height:1}
+.faq details[open] summary::after{content:"×";background:none;color:var(--ink);box-shadow:inset 0 0 0 1px #bdbdba}
+.faq details p{padding:0 54px 16px 18px;color:#4a4a48;font-size:14px}
+.more{margin-top:22px;text-align:center;font-size:14px}
+.more a{text-decoration:underline;text-underline-offset:3px}
+
+/* Contact */
+.contact{position:relative;padding:60px 20px 0;color:#fff;background:linear-gradient(#a9a9a9,#3d3d3d 62%,#050505 86%);overflow:hidden}
+#silk{position:absolute;inset:0;width:100%;height:100%}
+.glass{position:relative;max-width:440px;margin:0 auto;padding:30px 24px 26px;text-align:center;border-radius:48px;background:rgba(92,92,92,.56);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.glass svg{margin-bottom:8px}
+.glass h2{font-size:clamp(25px,3vw,31px);line-height:1.14;letter-spacing:-.02em}
+.glass>p{margin:8px auto 18px;max-width:34ch;font-size:14px;color:#ececec}
+form{display:grid;gap:8px;text-align:left}
+form[hidden],.form-done[hidden],.form-error[hidden]{display:none}
+.form-done{margin:10px 0 6px;padding:18px 16px;border-radius:16px;background:rgba(255,255,255,.14);color:#fff;font-size:16px}
+.form-done:focus{outline:none}
+.form-legal{margin:8px 0 0;text-align:center;font-size:12.5px;color:#e4e4e4}
+.form-legal a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.form-error a{text-decoration:underline;text-underline-offset:2px}
+.form-error{margin:6px 0 0;text-align:center;font-size:13.5px;color:#fff}
+form label{font-size:12.500px;color:#efefef}
+form input,form textarea{display:block;width:100%;margin-top:3px;padding:9px 12px;border:1px solid rgba(255,255,255,.14);border-radius:11px;background:rgba(255,255,255,.14);color:#fff;font-size:14px}
+form textarea{min-height:86px;resize:vertical}
+form .btn{justify-self:center;margin-top:10px;background:var(--ink);color:#fff;cursor:pointer}
+footer{position:relative;padding:60px 0 26px;font-size:14px;color:#cfcfcf}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.foot b{display:block;font-weight:500;color:#fff;margin-bottom:6px}
+.foot a{display:block;padding:2px 0}
+.foot a:hover{color:#fff}
+.wordmark{margin:24px 0 12px}
+.wordmark video{display:block;width:min(560px,100%);height:auto;margin:0 auto;mix-blend-mode:screen}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 20px;font-size:13px;color:#a9a9a9}
+
+@media (max-width:980px){
+  .bento{grid-template-columns:1fr 1fr}
+  .svc-tall{grid-column:span 2;grid-row:auto}
+  .promo{grid-column:span 2;grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .why-grid,.bento,.plans{grid-template-columns:1fr}
+  .svc-tall,.promo{grid-column:auto}
+  .steps::before,.fill{left:30px}
+  .step{grid-template-columns:24px 1fr;padding:12px;gap:12px}
+  .dot{grid-column:1;grid-row:1;justify-self:center}
+  .step-ico{display:none}
+  .step .step-text,.step:nth-child(odd of .step) .step-text{order:0;text-align:left;justify-items:start}
+  .step:nth-child(odd of .step) .step-ico{order:0}
+  .step:nth-child(odd of .step) .step-text p{margin-left:0}
+}
+@media (max-width:560px){
+  .hero{padding:90px 26px 120px}
+  .glass{border-radius:34px;padding-inline:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .word{opacity:1;transition:none}
+  .flow path.run,.belt,.talk>*{animation:none}
+  .belt{flex-wrap:wrap;width:auto;justify-content:center}
+  .belt span:nth-child(n+11){display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-row">
+    <a class="nav-mark" href="#top" aria-label="Ledgewell Automation, back to top">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><g id="pt"><circle cx="12" cy="5" r="2.200"/><circle cx="12" cy="19" r="2.200"/><circle cx="5" cy="12" r="2.200"/><circle cx="19" cy="12" r="2.200"/></g><g transform="rotate(45 12 12)"><circle cx="12" cy="5" r="1.800"/><circle cx="12" cy="19" r="1.800"/><circle cx="5" cy="12" r="1.800"/><circle cx="19" cy="12" r="1.800"/></g></svg>
+    </a>
+    <div class="nav-pill">
+      <button class="nav-btn" id="menu-btn" aria-expanded="false" aria-controls="menu"><span class="bars" aria-hidden="true"></span>Menu</button>
+      <a class="nav-btn nav-cta" href="#contact">Book a call</a>
+    </div>
+  </div>
+  <div class="nav-menu" id="menu" hidden>
+    <a href="#why">Why us</a>
+    <a href="#services">Services</a>
+    <a href="#process">How we work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">Questions</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="top">
+<header class="hero" id="top">
+  <canvas id="ball" aria-hidden="true"></canvas>
+  <div class="hero-copy">
+    <span class="eyebrow">✦ Ledgewell Automation</span>
+    <h1>Automation your team will actually use</h1>
+    <p>We find the repetitive work slowing your business down and replace it with systems that run quietly in the background.</p>
+    <div class="actions">
+      <a class="btn btn-holo" href="#contact">Book a call <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-glass" href="#services"><span class="dots" aria-hidden="true"><i></i><i></i></span>Work with us</a>
+    </div>
+  </div>
+</header>
+
+<section class="statement" id="approach">
+  <div class="wrap"><p id="statement">We help local service businesses reply to every lead in seconds and turn them into booked appointments.</p></div>
+</section>
+</div>
+
+<main id="main">
+
+  <section class="pad" id="why">
+    <div class="wrap">
+      <div class="head"><span class="tag">Why us</span><h2>Why Choose Us?</h2><p class="lede">We put your business goals first, then build AI that fits the way your team already works.</p></div>
+      <div class="why-grid">
+        <article class="why-card">
+          <div class="tile"><span><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.600 7.400L22 12l-7.400 2.600L12 22l-2.600-7.400L2 12l7.400-2.600z"/></svg></span></div>
+          <h3>Strategy led by your goals</h3><p>We start with your revenue and cost targets, so every AI project has a clear reason to exist.</p>
+        </article>
+        <article class="why-card">
+          <div class="tile"><span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.500 10 17.500 19 7"/></svg></span></div>
+          <h3>Hands-on from plan to launch</h3><p>One team handles the design, the build and the rollout, so nothing gets lost along the way.</p>
+        </article>
+        <article class="why-card">
+          <div class="tile"><span><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2.500"/><rect x="13" y="3" width="8" height="8" rx="4"/><rect x="3" y="13" width="8" height="8" rx="4"/><rect x="13" y="13" width="8" height="8" rx="2.500"/></svg></span></div>
+          <h3>Built around your business</h3><p>Each system is made for your processes and connects to the tools you use today.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="padding-bottom:clamp(70px,12vh,120px)">
+    <div class="wrap">
+      <div class="head"><span class="tag">Services</span><h2>Our AI Services</h2><p class="lede">Reply to every lead, on your website and by text, and book more appointments.</p></div>
+      <div class="bento">
+        <article class="svc svc-tall">
+          <div><h3>Website chat assistant</h3><p>A chat on your website answers visitors' questions and books them into your calendar, 24/7.</p></div>
+          <div class="demo">
+            <div class="chat talk">
+              <div class="bubble me">Hi, I need a roof estimate.</div>
+              <div class="bubble">Happy to help. Is Thursday at 10:00 a.m. good?</div>
+              <span class="chip">Booked</span>
+            </div>
+          </div>
+        </article>
+        <article class="svc">
+          <div><h3>Instant lead replies</h3><p>New leads get a text or chat reply within seconds, day or night.</p></div>
+          <div class="demo">
+            <svg class="flow" viewBox="0 0 320 60" role="img" aria-label="A new lead leading to a reply being sent">
+              <path class="run" d="M112 30H208"/>
+              <rect x="4" y="11" width="108" height="38" rx="11"/><text x="58" y="34">New lead</text>
+              <rect x="208" y="11" width="108" height="38" rx="11"/><text x="262" y="34">Reply sent</text>
+            </svg>
+          </div>
+        </article>
+        <article class="svc">
+          <div><h3>Appointment booking</h3><p>The AI books the estimate straight into your calendar.</p></div>
+          <div class="demo"><div class="lead"><i class="avatar" aria-hidden="true"></i>New lead<span class="chip">Booked</span></div></div>
+        </article>
+        <article class="svc">
+          <div><h3>Follow-up on quiet leads</h3><p>Leads that go silent get friendly follow-ups until they answer.</p></div>
+          <div class="demo">
+            <svg class="flow" viewBox="0 0 220 60" role="img" aria-label="Follow-up texts leading to a reply">
+              <path class="run" d="M58 30H82M138 30H162"/>
+              <rect x="6" y="11" width="52" height="38" rx="11"/><text x="32" y="34">Text</text>
+              <rect x="84" y="11" width="52" height="38" rx="11"/><text x="110" y="34">Text</text>
+              <rect x="162" y="11" width="52" height="38" rx="11"/><text x="188" y="34">Reply</text>
+            </svg>
+          </div>
+        </article>
+        <article class="svc">
+          <div><h3>Missed-call text-back</h3><p>If you miss a call, the customer gets a text right away.</p></div>
+          <div class="demo">
+            <svg class="flow" viewBox="0 0 320 60" role="img" aria-label="A missed call leading to a text being sent">
+              <path class="run" d="M112 30H208"/>
+              <rect x="4" y="11" width="108" height="38" rx="11"/><text x="58" y="34">Missed call</text>
+              <rect x="208" y="11" width="108" height="38" rx="11"/><text x="262" y="34">Text sent</text>
+            </svg>
+          </div>
+        </article>
+        <div class="promo">
+          <div class="promo-card holo"><h3>See it work on your business</h3><p>We'll build a free sample with your company name and show you how it replies to a real lead.</p><a class="btn btn-dark" href="#contact">Get a free sample <span class="arrow" aria-hidden="true">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad" id="process" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="tag">Process</span><h2>How We Work</h2><p class="lede">From free sample to booked appointments.</p></div>
+      <ol class="steps" id="steps" style="padding:0;list-style:none">
+        <li class="fill" id="fill" aria-hidden="true"></li>
+        <li class="step"><div class="step-ico"><i aria-hidden="true">✦</i>01</div><span class="dot"></span><div class="step-text"><h3>Free sample</h3><p>We build a sample using your business and show you how it replies.</p></div></li>
+        <li class="step"><div class="step-ico"><i aria-hidden="true">⌗</i>02</div><span class="dot"></span><div class="step-text"><h3>Setup</h3><p>We connect your phone number, calendar and messages.</p></div></li>
+        <li class="step"><div class="step-ico"><i aria-hidden="true">↗</i>03</div><span class="dot"></span><div class="step-text"><h3>Go live</h3><p>The AI starts replying to new leads on your website and by text right away.</p></div></li>
+        <li class="step"><div class="step-ico"><i aria-hidden="true">✓</i>04</div><span class="dot"></span><div class="step-text"><h3>Bookings</h3><p>You get appointments on your calendar.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pad" id="tech" style="padding-top:0">
+    <div class="head wrap"><span class="tag">Tools</span><h2>Works with what you already use</h2></div>
+    <div class="tech-wrap">
+      <div class="tech" aria-hidden="true">
+        <div class="belt"><span>Text messages</span><span>Email</span><span>Phone calls</span><span>Web chat</span><span>Your website</span><span>Google Calendar</span><span>CRM</span><span>Facebook</span><span>Instagram</span><span>Google Business Profile</span><span>Text messages</span><span>Email</span><span>Phone calls</span><span>Web chat</span><span>Your website</span><span>Google Calendar</span><span>CRM</span><span>Facebook</span><span>Instagram</span><span>Google Business Profile</span></div>
+        <div class="belt rev"><span>Google Calendar</span><span>Google Business Profile</span><span>Text messages</span><span>Facebook</span><span>Phone calls</span><span>CRM</span><span>Instagram</span><span>Email</span><span>Web chat</span><span>Your website</span><span>Google Calendar</span><span>Google Business Profile</span><span>Text messages</span><span>Facebook</span><span>Phone calls</span><span>CRM</span><span>Instagram</span><span>Email</span><span>Web chat</span><span>Your website</span></div>
+        <div class="belt"><span>Instagram</span><span>Web chat</span><span>Your website</span><span>Email</span><span>CRM</span><span>Google Business Profile</span><span>Text messages</span><span>Google Calendar</span><span>Phone calls</span><span>Facebook</span><span>Instagram</span><span>Web chat</span><span>Your website</span><span>Email</span><span>CRM</span><span>Google Business Profile</span><span>Text messages</span><span>Google Calendar</span><span>Phone calls</span><span>Facebook</span></div>
+      </div>
+      <a class="orb" href="#contact">✦<span>Get a free sample</span></a>
+    </div>
+    <p class="lede" style="margin-inline:auto;text-align:center;margin-top:24px">It fits in with the tools you already use to talk to customers.</p>
+  </section>
+
+  <section class="pad" id="pricing" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="tag">Pricing</span><h2>Built for Every Stage</h2><p class="lede">Simple pricing, set up for your business.</p></div>
+      <div class="plans">
+        <article class="plan best"><span class="plan-ico" aria-hidden="true"></span><h3>Custom pricing</h3><p>Pricing depends on your business and how many leads you get. Book a call and we'll give you a clear number.</p><ul><li>Instant lead replies</li><li>Website chat assistant</li><li>Appointment booking</li><li>Follow-up on quiet leads</li><li>Missed-call text-back</li><li>Setup done for you</li></ul><a class="btn btn-dark" href="#contact">Book a call</a></article>
+      </div>
+      <div class="banner holo"><i class="avatar" aria-hidden="true" style="display:block"></i><h3>Not sure what you need?</h3><p>Tell us about your business and we'll show you the best fit.</p><a class="btn btn-dark" href="#contact">Get a free sample <span class="arrow" aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <div class="faq-zone">
+    <section class="pad" id="faq" style="padding-top:20px">
+      <div class="wrap">
+        <div class="head"><span class="tag">Questions</span><h2>Common Questions</h2></div>
+        <div class="faq">
+          <details name="faq"><summary>Can it answer questions on my website?</summary><p>Yes. A chat assistant on your website answers common questions, collects the customer's details, and books the appointment.</p></details>
+          <details name="faq"><summary>Will it sound like a robot?</summary><p>No. Replies are short, friendly and written in your business's voice.</p></details>
+          <details name="faq"><summary>What if a customer wants a real person?</summary><p>The AI can pass the conversation to you or your team at any time.</p></details>
+          <details name="faq"><summary>Do I need to change my phone number?</summary><p>No. We set it up to work with the number your customers already know.</p></details>
+          <details name="faq" open><summary>How long does it take to go live?</summary><p>Most businesses are live within a few days after the free sample.</p></details>
+          <details name="faq"><summary>What does it cost?</summary><p>It depends on your business. Book a call and we'll give you a clear price.</p></details>
+        </div>
+        <p class="more">Have another question? <a href="#contact">Contact us</a></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="contact" id="contact">
+    <canvas id="silk" aria-hidden="true"></canvas>
+    <div class="glass">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 1.500l4.500 7.500-4.500 3-4.500-3zM12 22.500l-5-8 5 3 5-3z"/></svg>
+      <h2>Want a free sample?</h2>
+      <p>Tell us about your business and we'll build a sample reply for you.</p>
+      <form id="form">
+        <input type="hidden" name="access_key" value="{{WEB3FORMS_KEY}}">
+        <input type="hidden" name="subject" value="New free sample request">
+        <input type="hidden" name="from_name" value="Ledgewell Automation website">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <label>Your name<input name="name" autocomplete="name" required></label>
+        <label>Company name<input name="company" autocomplete="organization"></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>What kind of business do you run?<textarea name="details" required></textarea></label>
+        <button class="btn" type="submit">Send my request</button>
+        <p class="form-error" id="form-error" role="alert" hidden>Something went wrong and your request wasn't sent. Please email us at <a href="mailto:hello@ledgewell.net">hello@ledgewell.net</a>.</p>
+        <p class="form-legal">By submitting this form you agree to our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</p>
+      </form>
+      <p class="form-done" id="form-done" role="status" tabindex="-1" hidden>Thanks! We got your request and we'll be in touch.</p>
+    </div>
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <div><b>Ledgewell Automation</b>AI chat and text follow-up for local service businesses.</div>
+          <div><b>Site</b><a href="#services">What we do</a><a href="#pricing">Pricing</a></div>
+          <div><b>Company</b><a href="#faq">Questions</a><a href="#contact">Contact</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+          <div><b>Say hello</b><a href="mailto:hello@ledgewell.net">hello@ledgewell.net</a><a href="tel:+18304026328">(830) 402-6328</a></div>
+        </div>
+        <div class="wordmark"><video id="logo-video" src="ledgewell-footer.mp4" muted playsinline preload="auto" role="img" aria-label="Ledgewell Automation logo"></video></div>
+        <div class="legal"><span>© <span id="year">2026</span> Ledgewell Automation</span><span>All rights reserved</span></div>
+      </div>
+    </footer>
+  </section>
+</main>
+
+<script>
+(function(){
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id){ return document.getElementById(id); }
+  $('year').textContent = new Date().getFullYear();
+
+  /* Menu */
+  var btn = $('menu-btn'), menu = $('menu');
+  function setMenu(open){ menu.hidden = !open; btn.setAttribute('aria-expanded', open); }
+  btn.addEventListener('click', function(){ setMenu(menu.hidden); });
+  menu.addEventListener('click', function(e){ if(e.target.tagName === 'A') setMenu(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !menu.hidden){ setMenu(false); btn.focus(); } });
+  document.addEventListener('click', function(e){ if(!e.target.closest('.nav')) setMenu(false); });
+  /* Contact form: Web3Forms emails submissions to the address tied to the access key.
+     Local preview has nowhere to send them, so it only shows the thank-you message. */
+  var form = $('form'), done = $('form-done'), error = $('form-error');
+  var preview = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  function sent(){ form.hidden = true; done.hidden = false; done.focus(); }
+  function failed(){ error.hidden = false; }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    error.hidden = true;
+    if(preview){ sent(); return; }
+    var button = form.querySelector('button');
+    button.disabled = true;
+    fetch('https://api.web3forms.com/submit', {
+      method:'POST',
+      headers:{'Content-Type':'application/json', Accept:'application/json'},
+      body:JSON.stringify(Object.fromEntries(new FormData(form)))
+    })
+      .then(function(r){ return r.json(); })
+      .then(function(j){ j.success ? sent() : failed(); }, failed)
+      .then(function(){ button.disabled = false; });
+  });
+
+  /* Footer logo: plays when it scrolls into view and stops on the finished logo */
+  var logo = $('logo-video');
+  function logoEnd(){ if(logo.duration) logo.currentTime = logo.duration - .05; }
+  if(calm){
+    logo.addEventListener('loadedmetadata', logoEnd);
+    if(logo.readyState > 0) logoEnd();
+  } else {
+    new IntersectionObserver(function(es){
+      if(es[0].isIntersecting){
+        logo.currentTime = 0;
+        var p = logo.play();
+        if(p) p.catch(logoEnd);
+      } else {
+        logo.pause();
+      }
+    }, {threshold:.4}).observe(logo);
+  }
+
+  /* Scroll effects */
+  var scrollY0 = 0;
+  var steps = [].slice.call(document.querySelectorAll('.step')), stepBox = $('steps'), stepFill = $('fill');
+  if(!calm){
+    var st = $('statement'), words = st.textContent.trim().split(/\s+/);
+    st.setAttribute('aria-label', st.textContent.trim());
+    st.textContent = '';
+    var spans = words.map(function(w, i){
+      var s = document.createElement('span');
+      s.className = 'word'; s.textContent = w; s.setAttribute('aria-hidden', 'true');
+      st.appendChild(s);
+      if(i < words.length - 1) st.appendChild(document.createTextNode(' '));
+      return s;
+    });
+  }
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var vh = innerHeight;
+    scrollY0 = scrollY;
+    var sb = stepBox.getBoundingClientRect(), mid = vh * .55;
+    stepFill.style.height = Math.min(sb.height, Math.max(0, mid - sb.top)) + 'px';
+    steps.forEach(function(s){ var r = s.getBoundingClientRect(); s.classList.toggle('on', r.top < mid && r.bottom > mid - 60); });
+    if(calm) return;
+    var r = st.getBoundingClientRect();
+    var p = Math.min(1, Math.max(0, (vh * .85 - r.top) / (vh * .5 + r.height)));
+    var lit = Math.round(p * spans.length);
+    spans.forEach(function(s, i){ s.classList.toggle('on', i < lit); });
+  }
+  function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(update);
+  update();
+
+  /* WebGL helper */
+  function scene(canvas, frag, resize, maxDpr){
+    var gl = canvas.getContext('webgl', {alpha:true, premultipliedAlpha:true, antialias:false});
+    if(!gl) return false;
+    function sh(type, src){ var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+    var pr = gl.createProgram();
+    gl.attachShader(pr, sh(gl.VERTEX_SHADER, 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));
+    gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, frag));
+    gl.linkProgram(pr);
+    if(!gl.getProgramParameter(pr, gl.LINK_STATUS)) return false;
+    gl.useProgram(pr);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(pr, 'a');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var U = {res:gl.getUniformLocation(pr,'res'), t:gl.getUniformLocation(pr,'t'), sc:gl.getUniformLocation(pr,'sc')};
+    var visible = false, raf = 0, quality = 1, last = 0, sum = 0, count = 0;
+    function size(){
+      var d = Math.min(devicePixelRatio || 1, maxDpr) * quality, w = canvas.clientWidth, h = canvas.clientHeight;
+      canvas.width = w * d; canvas.height = h * d;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.uniform2f(U.res, canvas.width, canvas.height);
+      if(resize) gl.uniform1f(U.sc, resize(w, h));
+    }
+    function draw(ms){ gl.uniform1f(U.t, (ms || 0) / 1000 + scrollY0 * .0016); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+    function loop(ms){
+      draw(ms);
+      /* Slower devices get a lower render resolution rather than a stutter */
+      var dt = ms - last; last = ms;
+      if(dt < 250){
+        sum += dt;
+        if(++count === 45){
+          if(sum / count > 24 && quality > .5){ quality = Math.max(.5, quality * .75); size(); }
+          sum = count = 0;
+        }
+      }
+      raf = visible ? requestAnimationFrame(loop) : 0;
+    }
+    size();
+    addEventListener('resize', function(){ size(); if(calm) draw(9000); });
+    if(calm){ draw(9000); return true; }
+    new IntersectionObserver(function(es){
+      visible = es[0].isIntersecting;
+      if(visible && !raf) raf = requestAnimationFrame(loop);
+    }).observe(canvas);
+    return true;
+  }
+
+  /* The particle sphere: a dark body covered in points, gold on top and silver below */
+  var ballFrag = `precision highp float;uniform vec2 res;uniform float t;uniform float sc;
+float h1(vec3 p){p=fract(p*vec3(.1031,.103,.0973));p+=dot(p,p.yxz+33.33);return fract((p.x+p.y)*p.z);}
+vec3 h3(vec3 p){p=fract(p*vec3(.1031,.103,.0973));p+=dot(p,p.yxz+33.33);return fract((p.xxy+p.yxx)*p.zyx);}
+mat2 rot(float a){float c=cos(a),s=sin(a);return mat2(c,-s,s,c);}
+/* Scattered points on the sphere: q is a point on its surface, keep is the share of points shown */
+float field(vec3 q,float s,float keep,float px,float zf){
+ vec3 b=floor(q*s-.5);float o=0.;
+ for(int x=0;x<2;x++)for(int y=0;y<2;y++)for(int z=0;z<2;z++){
+  vec3 c=b+vec3(float(x),float(y),float(z));
+  if(h1(c+7.)>keep)continue;
+  vec3 r=h3(c);
+  vec3 ctr=normalize((c+r)/s);
+  float big=h1(c+3.);
+  float sz=mix(.0034,.0125,big*big*big)*zf;
+  float tw=.72+.28*sin(t*(.8+r.x*1.8)+r.y*6.28);
+  o=max(o,(1.-smoothstep(sz*.35,sz+px,length(q-ctr)))*tw*(.62+.38*r.z));
+ }
+ return o;
+}
+void main(){
+ vec2 uv=(gl_FragCoord.xy-.5*res)/res.y;uv.y+=.012;
+ float R=sc*.8;
+ vec2 p=uv/R;
+ float r=length(p),px=1./(res.y*R);
+ /* Warm light above the sphere */
+ vec2 w=(p-vec2(0.,1.22))/vec2(1.25,.5);
+ float g=exp(-dot(w,w));
+ vec3 glow=mix(vec3(1.,.55,.24),vec3(1.,.9,.56),g*g);
+ float ga=.82*g;
+ vec3 rgb=glow*ga;float a=ga;
+ if(r<1.05){
+  float ba=1.-smoothstep(.88,1.03,r);ba*=ba*(3.-2.*ba);
+  float lit=smoothstep(.05,1.,p.y);
+  vec3 body=vec3(.012,.008,.006)+vec3(.5,.29,.13)*lit*lit*.8;
+  rgb=rgb*(1.-ba)+body*ba;a=a+ba*(1.-a);
+  float z=sqrt(max(0.,1.-r*r));
+  float turn=t*.09;
+  vec3 q=normalize(vec3(p,z));q.xz=rot(turn)*q.xz;q.yz=rot(.28)*q.yz;
+  vec3 k=normalize(vec3(p,-z));k.xz=rot(turn)*k.xz;k.yz=rot(.28)*k.yz;
+  float gy=(p.y+.1)/.13;
+  float gap=exp(-gy*gy);
+  float keep=clamp(.085+.62*pow(r,5.)+.5*smoothstep(.3,.98,p.y),0.,1.)*(1.-.92*gap);
+  keep*=mix(.72,1.,smoothstep(-.3,.1,p.y));
+  float zf=max(z,.3);
+ float f=max(field(q,40.,keep,px,zf),field(q,72.,keep*.55,px,zf)*.75);
+  float b=field(k,44.,keep*.4,px,zf)*.26;
+  float pa=max(f,b)*(1.-smoothstep(.985,1.02,r))*(.68+.32*smoothstep(.15,.8,r));
+  vec3 gold=mix(vec3(1.,.62,.22),vec3(1.,.8,.42),smoothstep(.1,.6,p.y));
+  gold=mix(gold,vec3(1.,.95,.72),smoothstep(.62,.95,p.y));
+  vec3 pc=mix(vec3(.9,.91,.93),gold,smoothstep(-.2,.0,p.y));
+  float boost=1.15+1.1*smoothstep(.5,.95,p.y)+.7*pow(r,5.);
+  rgb+=pc*pa*boost;a=max(a,pa);
+ }
+ gl_FragColor=vec4(rgb,a);
+}
+`;
+  var ok = scene($('ball'), ballFrag, function(w, h){ return Math.min(.53, w / h * .8); }, 1);
+  if(!ok) $('ball').style.cssText += ';background:radial-gradient(closest-side,#0a0a0a 60%,transparent 62%) center/min(620px,96vw) 90% no-repeat';
+
+  /* Silk folds behind the contact form */
+  scene($('silk'), [
+    'precision highp float;uniform vec2 res;uniform float t;uniform float sc;',
+    'void main(){',
+    ' vec2 u=gl_FragCoord.xy/res;vec2 p=vec2(u.x*res.x/res.y,u.y)*1.6;float T=t*.05;',
+    ' float a=sin(p.x*1.1+1.7*sin(p.y*1.5+T)+T);',
+    ' float b=sin(p.x*.6-p.y*2.3+1.3*a+T*1.3);',
+    ' float s=.5+.5*sin(2.6*a+2.2*b+p.y*1.4);',
+    ' s=pow(s,2.2);',
+    ' float fall=smoothstep(.16,.86,u.y);',
+    ' float l=mix(.0,.28+.72*s,fall);l=mix(l,.663,smoothstep(.86,1.,u.y));',
+    ' gl_FragColor=vec4(vec3(l),1.);',
+    '}'].join('\n'), null, 1);
+})();
+</script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6aed70f83c83530a42887e45"></script>
+</body>
+</html>
