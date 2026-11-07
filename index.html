@@ -201,18 +201,9 @@ h2{font-weight:500;font-size:clamp(32px,3.9vw,46px);line-height:1.08;letter-spac
 .glass svg{margin-bottom:8px}
 .glass h2{font-size:clamp(25px,3vw,31px);line-height:1.14;letter-spacing:-.02em}
 .glass>p{margin:8px auto 18px;max-width:34ch;font-size:14px;color:#ececec}
-form{display:grid;gap:8px;text-align:left}
-form[hidden],.form-done[hidden],.form-error[hidden]{display:none}
-.form-done{margin:10px 0 6px;padding:18px 16px;border-radius:16px;background:rgba(255,255,255,.14);color:#fff;font-size:16px}
-.form-done:focus{outline:none}
-.form-legal{margin:8px 0 0;text-align:center;font-size:12.5px;color:#e4e4e4}
+.ghl-form{display:block;width:100%;min-height:440px;border:0;background:transparent;border-radius:14px}
+.glass>.form-legal{max-width:none;margin:12px 0 0;text-align:center;font-size:12.5px;color:#e4e4e4}
 .form-legal a{color:#fff;text-decoration:underline;text-underline-offset:2px}
-.form-error a{text-decoration:underline;text-underline-offset:2px}
-.form-error{margin:6px 0 0;text-align:center;font-size:13.5px;color:#fff}
-form label{font-size:12.500px;color:#efefef}
-form input,form textarea{display:block;width:100%;margin-top:3px;padding:9px 12px;border:1px solid rgba(255,255,255,.14);border-radius:11px;background:rgba(255,255,255,.14);color:#fff;font-size:14px}
-form textarea{min-height:86px;resize:vertical}
-form .btn{justify-self:center;margin-top:10px;background:var(--ink);color:#fff;cursor:pointer}
 footer{position:relative;padding:60px 0 26px;font-size:14px;color:#cfcfcf}
 .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
 .foot b{display:block;font-weight:500;color:#fff;margin-bottom:6px}
@@ -431,20 +422,9 @@ footer{position:relative;padding:60px 0 26px;font-size:14px;color:#cfcfcf}
       <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 1.500l4.500 7.500-4.500 3-4.500-3zM12 22.500l-5-8 5 3 5-3z"/></svg>
       <h2>Want a free sample?</h2>
       <p>Tell us about your business and we'll build a sample reply for you.</p>
-      <form id="form">
-        <input type="hidden" name="access_key" value="{{WEB3FORMS_KEY}}">
-        <input type="hidden" name="subject" value="New free sample request">
-        <input type="hidden" name="from_name" value="Ledgewell Automation website">
-        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-        <label>Your name<input name="name" autocomplete="name" required></label>
-        <label>Company name<input name="company" autocomplete="organization"></label>
-        <label>Email<input name="email" type="email" autocomplete="email" required></label>
-        <label>What kind of business do you run?<textarea name="details" required></textarea></label>
-        <button class="btn" type="submit">Send my request</button>
-        <p class="form-error" id="form-error" role="alert" hidden>Something went wrong and your request wasn't sent. Please email us at <a href="mailto:hello@ledgewell.net">hello@ledgewell.net</a>.</p>
-        <p class="form-legal">By submitting this form you agree to our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</p>
-      </form>
-      <p class="form-done" id="form-done" role="status" tabindex="-1" hidden>Thanks! We got your request and we'll be in touch.</p>
+      <iframe src="https://api.leadconnectorhq.com/widget/form/nICFh0Aci7chQy6kF8Kv" class="ghl-form" id="inline-nICFh0Aci7chQy6kF8Kv" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-layout-iframe-id="inline-nICFh0Aci7chQy6kF8Kv" data-form-id="nICFh0Aci7chQy6kF8Kv" title="Request a free sample"></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+      <p class="form-legal">By submitting this form you agree to our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</p>
     </div>
     <footer>
       <div class="wrap">
@@ -474,27 +454,6 @@ footer{position:relative;padding:60px 0 26px;font-size:14px;color:#cfcfcf}
   menu.addEventListener('click', function(e){ if(e.target.tagName === 'A') setMenu(false); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !menu.hidden){ setMenu(false); btn.focus(); } });
   document.addEventListener('click', function(e){ if(!e.target.closest('.nav')) setMenu(false); });
-  /* Contact form: Web3Forms emails submissions to the address tied to the access key.
-     Local preview has nowhere to send them, so it only shows the thank-you message. */
-  var form = $('form'), done = $('form-done'), error = $('form-error');
-  var preview = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  function sent(){ form.hidden = true; done.hidden = false; done.focus(); }
-  function failed(){ error.hidden = false; }
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    error.hidden = true;
-    if(preview){ sent(); return; }
-    var button = form.querySelector('button');
-    button.disabled = true;
-    fetch('https://api.web3forms.com/submit', {
-      method:'POST',
-      headers:{'Content-Type':'application/json', Accept:'application/json'},
-      body:JSON.stringify(Object.fromEntries(new FormData(form)))
-    })
-      .then(function(r){ return r.json(); })
-      .then(function(j){ j.success ? sent() : failed(); }, failed)
-      .then(function(){ button.disabled = false; });
-  });
 
   /* Footer logo: plays when it scrolls into view and stops on the finished logo */
   var logo = $('logo-video');
